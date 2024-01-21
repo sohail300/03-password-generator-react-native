@@ -229,9 +229,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
     marginTop: 40,
+    width: '100%',
   },
   textInput: {
-    borderColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#000',
     borderRadius: 8,
     backgroundColor: '#fff',
     width: 48,
