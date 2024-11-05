@@ -87,15 +87,15 @@ export default function Body() {
       <View style={styles.headingContainer}>
         <Text style={styles.heading}>Password Generator</Text>
       </View>
-      <View>
+      <View style={{flex: 1}}>
         <View>
           <Formik
             initialValues={{length: '0'}}
             validationSchema={LengthValidation}
-            onSubmit={() => console.log('generate')}
+            onSubmit={values => console.log(values)}
             onReset={() => reset()}>
             {({handleChange, handleSubmit, values, handleReset}) => (
-              <View>
+              <View style={styles.bodyContainer}>
                 <View style={styles.textInputContainer}>
                   <Text style={styles.text}>Password Length</Text>
                   <TextInput
@@ -178,11 +178,15 @@ export default function Body() {
                 </View>
 
                 <View style={styles.btnContainer}>
-                  <TouchableOpacity onPress={() => handleSubmit}>
-                  <Button onPress={() => handleReset} title="Generate" />
+                  <TouchableOpacity
+                    onPress={() => handleSubmit}
+                    style={styles.button}>
+                    <Button title="Generate" />
                   </TouchableOpacity>
-                  <TouchableOpacity onPress={() => handleSubmit}>
-                  <Button onPress={() => handleReset} title="Reset" />
+                  <TouchableOpacity
+                    onPress={() => handleReset}
+                    style={styles.button}>
+                    <Button title="Reset" />
                   </TouchableOpacity>
                 </View>
               </View>
@@ -204,14 +208,16 @@ export default function Body() {
 
 const styles = StyleSheet.create({
   app: {
+    flex: 1,
     backgroundColor: '#fff',
     height: '100%',
+    borderWidth: 4,
+    borderColor: 'red',
   },
   headingContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
-    // height: '100%',
     marginTop: 24,
     width: '100%',
   },
@@ -222,11 +228,17 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#000',
+    fontSize: 16,
+    marginLeft: 16,
+  },
+  bodyContainer: {
+    marginHorizontal: 40,
+    gap: 24,
   },
   textInputContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
     alignItems: 'center',
     marginTop: 40,
     width: '100%',
@@ -236,16 +248,15 @@ const styles = StyleSheet.create({
     borderColor: '#000',
     borderRadius: 8,
     backgroundColor: '#fff',
-    width: 48,
-    height: 48,
+    width: 80,
+    paddingHorizontal: 16,
+    height: 40,
     color: '#000',
   },
   bodyComp: {
     justifyContent: 'space-between',
     alignItems: 'center',
     height: 200,
-    paddingHorizontal: 16,
-    margin: 32,
   },
   checkbox: {
     flexDirection: 'row-reverse',
@@ -259,12 +270,11 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   button: {
-    backgroundColor: '#87CEEB',
     padding: 8,
-    width: 80,
+    width: 120,
     textAlign: 'center',
-    borderRadius: 6,
     color: '#000',
+    overflow: 'hidden',
   },
   passwordContainer: {
     height: 100,
